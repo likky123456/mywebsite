@@ -1,0 +1,143 @@
+/* --- Body & Background --- */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(120deg, #ffe6f0, #fff0f5);
+  text-align: center;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  animation: bgAnimate 20s ease infinite alternate;
+}
+
+@keyframes bgAnimate {
+  0% { background: linear-gradient(120deg, #ffe6f0, #fff0f5); }
+  50% { background: linear-gradient(120deg, #ffccf0, #ffd6e8); }
+  100% { background: linear-gradient(120deg, #ffe6f0, #fff0f5); }
+}
+
+/* --- Page --- */
+.page { display: none; padding: 15px; }
+.page.active { display: block; opacity: 1; transition: opacity 1s ease; }
+
+/* --- Buttons & Inputs --- */
+button.glow-btn {
+  padding: 12px 25px;
+  font-size: 16px;
+  margin: 10px;
+  border: none; border-radius: 12px;
+  background: #ff69b4; color: white; cursor: pointer;
+  box-shadow: 0 0 10px #ff1493, 0 0 20px #ff69b4;
+  transition: all 0.3s ease;
+}
+button.glow-btn:hover { transform: scale(1.05); box-shadow: 0 0 20px #ff1493, 0 0 30px #ff69b4; }
+
+input[type="password"] {
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 90%;
+  max-width: 300px;
+}
+
+/* --- Paper --- */
+.paper {
+  position: relative;
+  background: #fff0f5;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: left;
+  box-shadow: 0 0 15px rgba(255,20,147,0.3);
+  overflow: hidden;
+  max-width: 95%;
+  margin: 10px auto;
+}
+
+/* --- Text --- */
+.msg { font-size: 16px; line-height: 1.5; }
+.highlight { font-weight: bold; }
+.rainbow { animation: rainbowColor 3s linear infinite; }
+@keyframes rainbowColor {
+  0% { color:#ff1493; } 16%{color:#ff69b4;}
+  32%{color:#ff99cc;} 48%{color:#ff3399;}
+  64%{color:#ff66cc;} 80%{color:#ff66ff;} 100%{color:#ff1493;}
+}
+
+/* --- Glow Title --- */
+.glow-title {
+  color: #ff1493;
+  text-shadow: 0 0 10px #ff1493, 0 0 20px #ff69b4;
+  margin-top: 0;
+  font-size: 1.8em;
+}
+
+/* --- Floating Hearts --- */
+.floating-hearts { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:10; }
+.heart { position:absolute; width:12px; height:12px; background:red; transform:rotate(45deg); animation-name:float; animation-iteration-count:infinite; opacity:0.7; z-index:10; border-radius:3px; }
+@keyframes float {
+  0% { transform: translateY(0) rotate(45deg); opacity:0.7; }
+  50% { opacity:1; }
+  100% { transform: translateY(-700px) rotate(45deg); opacity:0; }
+}
+
+/* --- Photo --- */
+#photo {
+  position: absolute;
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.6);
+  opacity: 0;
+  max-width: 90%;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(255,20,147,0.5);
+  transition: all 2s ease;
+  z-index: 5;
+}
+#photo.show {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  box-shadow: 0 0 50px #ff69b4, 0 0 100px #ff1493;
+  border: 5px solid rgba(255, 20, 147, 0.3);
+}
+
+/* --- "I LOVE YOU" text --- */
+.love-text {
+  font-size: 2.5em; 
+  color: #ff1493;
+  text-shadow: 0 0 20px #ff69b4, 0 0 30px #ff1493;
+  opacity: 0;
+  transition: all 1s ease;
+  animation: pulse 1.5s infinite; 
+  margin-top: 20px;
+}
+@keyframes pulse {
+  0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); }
+}
+
+/* --- Sparkles --- */
+.sparkle-container { position: fixed; width: 100%; height: 100%; top:0; left:0; pointer-events: none; z-index:20; }
+.word-sparkle {
+  position: absolute;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 1;
+  pointer-events:none;
+  animation: riseFade 1.5s forwards;
+}
+@keyframes riseFade {
+  0% { transform: translateY(0) scale(1); opacity:1; }
+  100% { transform: translateY(-80px) scale(0.5); opacity:0; }
+}
+
+/* --- Fade out text --- */
+.fade-out { opacity:0; transition: opacity 2s ease; }
+
+/* --- Responsive adjustments --- */
+@media screen and (max-width: 500px) {
+  .msg { font-size: 14px; }
+  .love-text { font-size: 2em; }
+  .glow-title { font-size: 1.5em; }
+  #photo { max-width: 85%; border-radius: 15px; }
+  input[type="password"] { width: 95%; }
+}

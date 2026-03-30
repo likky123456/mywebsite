@@ -1,0 +1,48 @@
+function showLove() {
+  document.getElementById("loveMessage").style.display = "block";
+  startConfetti();
+}
+
+function askPassword() {
+  let pass = prompt("Enter password");
+
+  if (pass === "14Feb") {
+    window.location.href = "secret.html";
+  } else {
+    alert("Wrong password");
+  }
+}
+
+// Confetti
+const canvas = document.getElementById("confetti");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let confetti = [];
+
+function startConfetti() {
+  for (let i = 0; i < 100; i++) {
+    confetti.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: 5
+    });
+  }
+  draw();
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  confetti.forEach(c => {
+    ctx.beginPath();
+    ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2);
+    ctx.fillStyle = "white";
+    ctx.fill();
+    c.y += 2;
+  });
+
+  requestAnimationFrame(draw);
+}
